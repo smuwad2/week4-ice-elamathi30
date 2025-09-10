@@ -11,15 +11,16 @@
 
    <input type="text" id="inputText">
    <!-- add a button here for adding new item -->
-   <button onclick="addItem" id="Addbtn">Enter</button>
+   <button onclick="addItem()" id="Addbtn">Enter</button>
    
    <ul>
-      <li>Notebook<button onclick="removeItem(this.parentNode)">Delete</button></li>
-      <li>Jello<button onclick="removeItem(this.parentNode)">Delete</button></li>
-      <li>Spinach<button onclick="removeItem(this.parentNode)">Delete</button></li>
-      <li>Rice<button onclick="removeItem(this.parentNode)">Delete</button></li>
-      <li>Birthday Cake<button onclick="removeItem(this.parentNode)">Delete</button></li>
-      <li>Candles<button onclick="removeItem(this.parentNode)">Delete</button></li>
+      <li>Notebook<button onclick="removeItem(this.parentNode)">delete</button></li>
+      <!-- so here the parent node will be list then we use the ndoe to remove -->
+      <li>Jello<button onclick="removeItem(this.parentNode)">delete</button></li>
+      <li>Spinach<button onclick="removeItem(this.parentNode)">delete</button></li>
+      <li>Rice<button onclick="removeItem(this.parentNode)">delete</button></li>
+      <li>Birthday Cake<button onclick="removeItem(this.parentNode)">delete</button></li>
+      <li>Candles<button onclick="removeItem(this.parentNode)">delete</button></li>
    </ul>
 
    <script>
@@ -30,27 +31,56 @@
 
       // add code here
         function addItem(){
-            const itemVal = document.getElementById("item").value; 
+            const itemVal = document.getElementById("inputText").value; 
+
+            const textNode = document.createTextNode(itemVal);
+
             //create the li element 
             let liElem = document.createElement("li"); 
-
             //li is new child of ul element --> do in js
-            liElem.innerText = itemVal;
             
-            const btnElem = document.creatElem("button");
-            btnElem.innerText ="delete"; 
-            btnElem.addEventListener("click",function(){
-               //anonymous fucntion only when click ele occur 
-               //look at the function and execute the function within 
-               removeItem(this.parentNode); 
-            }
-         )
+            //liElem.innerText = itemVal;
+            
+            const btnElem = document.createElement("button");
+            //here we create a new DELETE button for the new item added 
+            btnElem.innerText ="delete";  // must match with the above the button name 
+
+            //now we have the button it doesnt rly do anything doesnt delete so we need to 
+            //join with the removeItem() function we did 
+            //2 ways to do that oen is setAttribute or listener 
+            //setattribute 
+            // btnElem.setAttribute("onclick","removeItem(this.parentNode)");
+            
+            //second is listener 
+            btnElem.addEventListener("click", function(){
+                  removeItem(this.parentNode); 
+            });
+            
+
+            //liElem.appendChild(btnElem); 
+            //so we combine botht the text and button inside the lielem we supposed to add to 
+            //use append instead of innerText + appendChild 
+
+         
+            
+            // btnElem.addEventListener("click",function(){
+            //    //anonymous fucntion only when click ele occur 
+            //    //look at the function and execute the function within 
+            //    removeItem(this.parentNode); 
+            // }
+         
             const ulElem = document.getElementsByTagName("ul")[0]; 
-            ulElem.appendChild(liElem);  
+            liElem.appendChild(textNode); 
+            liElem.appendChild(btnElem); 
+            ulElem.appendChild(liElem);
         }
+
+
+        //delete function
         function removeItem(obj){
             obj.remove(); 
         }
+
    </script>
 
 </body>

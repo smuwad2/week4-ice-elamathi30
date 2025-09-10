@@ -20,12 +20,25 @@
 </head>
 <body>
         
-        <div id="circle" onmouseover="mOver(this)" onmouseout="mOut(this)" >
+        <div id="circle" onmouseover="mOver(this)" onmouseout="mOut(this)">
             Mouse Over Me
         </div>
         
         <script>
            // add code here
+                function mOver(obj){
+                        obj.innerHTML = "Mouse Over Me"; 
+                        
+                        //document.getElementById("circle").style.borderRadius='0px'; 
+                        obj.style.borderRadius="0px";
+                }
+           function mOut(obj){
+                obj.innerHTML="Mouse Over Me"; 
+                // document.getElementById("circle").style.borderRadius='50%'; 
+                obj.style.borderRadius="50%"; 
+
+           }
+           
         </script>
                 
 </body>

@@ -19,7 +19,17 @@
     <script>
         
         // add code here
-        
+        var selectoption = document.getElementById("select_item");
+        selectoption.addEventListener("change",function(){
+            //selectoption is the one we select 
+            // we need to add this to li and to ul 
+            const  liElem = document.createElement("li"); 
+            const ulElem= document.getElementById("shopList");
+            liElem.appendChild(selectoption); 
+
+            ulElem.innerHTML=liElem; 
+                       
+        })
         
     </script>
 
